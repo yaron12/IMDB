@@ -1,0 +1,33 @@
+<html ng-app="imdb">
+	<head>
+		<meta charset="UTF-8">
+		<title>IMDB</title>
+		<link href="css/style.css" rel="stylesheet" />
+		<script src="JS/angular.js"></script>
+		<script src="app/imdb.js"></script>
+	</head>
+	<body>
+		<h1>actors</h1>
+		<div ng-controller="gallery">
+			Search:
+			<input ng-model="query"/>
+			{{query}}
+			<hr>
+			<button ng-click="sort('up')">
+				Up
+			</button>
+			|
+			<button ng-click="sort('down')">
+				Down
+			</button>
+			<div ng-repeat="actor in myActors|filter:{name:query} | orderBy:upDown" class="actor-box">
+				<img ng-src="img/{{actor.img}}" width="200" height="250"
+				ng-click="image.selected = !image.selected"
+				ng-class="{ 'selected-image': image.selected }"/>
+				<a ng-href="{{actor.link}}" target="_blank">{{actor.name}}</a>
+				<hr>
+			</div>
+		</div>
+	</body>
+</html>
+
